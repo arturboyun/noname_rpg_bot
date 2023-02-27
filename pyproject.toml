@@ -5,7 +5,7 @@ description = ""
 authors = ["Artur <arturboyun@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "3.10.5"
+python = "3.11.1"
 aiogram = "3.0.0b5"
 python-dotenv = "^0.21.0"
 tortoise-orm = {extras = ["asyncpg"], version = "^0.19.2"}

@@ -1,25 +1,31 @@
 from typing import Union
+
 from bot.models import Player
+from bot.services.base import Service
+from bot.types import ID_TYPE
 
-ID_TYPE = Union[int, str]
 
+class PlayerService(Service):
+    def get(self, pk: ID_TYPE) -> Player | None:
+        return await Player.filter(id=pk).first()
 
-class PlayerService:
-    def __init__(self, player: Union[Player, ID_TYPE]):
-        if isinstance(player, Player):
-            self.player = player
-        else:
-            self.player = Player.filter(id=player).first()
+    def create(self):
+        pass
 
-    def get_player(self) -> Player:
-        return self.player
+    def update(self):
+        pass
+
+    def delete(self):
+        pass
+
     def player_exists(self) -> bool:
         return self.player is not None
+
     def get_info(self) -> str:
         if self.player is None:
             raise "Player not found."
-        return f"Username: {self.player.username}\n"\
-            f"Nickname: {self.player.nickname}\n"\
-            f"Level: {self.player.lvl}\n"\
-            f"XP: {self.player.xp}\n"\
-            f"HP: {self.player.hp} / {self.player.max_hp}"
+        return f"Username: {self.player.username}\n" \
+               f"Nickname: {self.player.nickname}\n" \
+               f"Level: {self.player.lvl}\n" \
+               f"XP: {self.player.xp}\n" \
+               f"HP: {self.player.hp} / {self.player.max_hp}"

@@ -12,6 +12,7 @@ async def upgrade(db: BaseDBAsyncClient) -> str:
 CREATE TABLE IF NOT EXISTS "player" (
     "id" SERIAL NOT NULL PRIMARY KEY,
     "username" VARCHAR(255) NOT NULL UNIQUE,
+    "nickname" VARCHAR(255) UNIQUE,
     "xp" BIGINT NOT NULL  DEFAULT 0,
     "lvl" INT NOT NULL  DEFAULT 1,
     "hp" INT NOT NULL  DEFAULT 10,
